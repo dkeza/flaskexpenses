@@ -1,0 +1,7 @@
+SET MAIL_SERVER=smtp.mailtrap.io
+SET MAIL_PORT=2525
+SET MAIL_USERNAME=f2c0fced1f9d42
+SET MAIL_PASSWORD=bc3c82d139ac9a
+SET FLASK_DEBUG=1
+SET FLASK_APP=flaskexpenses.py
+flask run
