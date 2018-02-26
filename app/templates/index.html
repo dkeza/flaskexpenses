@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-<h1>Hi, {{ current_user.username }}!</h1>
+
+{% if current_user.is_anonymous %}
+    <h1>Hi, please <a href="{{ url_for('login') }}">login</a></h1>
+    {% else %}
+        <h1>Hi, {{ current_user.username }}!</h1>
+    {% endif %}
+
 {% endblock %}

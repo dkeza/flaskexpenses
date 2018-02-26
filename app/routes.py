@@ -7,7 +7,6 @@ from app.models import User
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
-@login_required
 def index():
     return render_template('index.html', title='Home')
 
@@ -28,12 +27,10 @@ def login():
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
 
-
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -63,7 +60,6 @@ def reset_password_request():
     return render_template('reset_password_request.html',
                            title='Reset Password', form=form)
 
-
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     if current_user.is_authenticated:
@@ -79,3 +75,12 @@ def reset_password(token):
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
 
+@app.route('/expenses', methods=['GET', 'POST'])
+@login_required
+def expenses():
+    return render_template('expenses.html', title='Expenses')
+
+@app.route('/incomes', methods=['GET', 'POST'])
+@login_required
+def incomes():
+    return render_template('incomes.html', title='Incomes')
