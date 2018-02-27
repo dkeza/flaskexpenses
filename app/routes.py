@@ -84,3 +84,8 @@ def expenses():
 @login_required
 def incomes():
     return render_template('incomes.html', title='Incomes')
+
+@app.route('/posts', methods=['GET', 'POST'])
+@login_required
+def posts():
+    return render_template('posts.html', title='Posts')

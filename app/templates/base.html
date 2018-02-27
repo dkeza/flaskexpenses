@@ -33,12 +33,13 @@
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="{{ url_for('expenses') }}">Expenses</a></li>
                     <li><a href="{{ url_for('incomes') }}">Incomes</a></li>
+                    <li><a href="{{ url_for('posts') }}">Posts</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_anonymous %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% else %}
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout {{ current_user.username }}</a></li>
                     {% endif %}
                 </ul>
             </div>
