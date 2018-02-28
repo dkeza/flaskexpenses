@@ -30,10 +30,10 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('expenses') }}">Expenses</a></li>
-                    <li><a href="{{ url_for('incomes') }}">Incomes</a></li>
-                    <li><a href="{{ url_for('posts') }}">Posts</a></li>
+                    <li><a href="{{ url_for('index') }}">{{_('Home')}}</a></li>
+                    <li><a href="{{ url_for('expenses') }}">{{_('Expenses')}}</a></li>
+                    <li><a href="{{ url_for('incomes') }}">{{_('Incomes')}}</a></li>
+                    <li><a href="{{ url_for('posts') }}">{{_('Posts')}}</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_anonymous %}
