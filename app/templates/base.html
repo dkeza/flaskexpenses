@@ -36,6 +36,8 @@
                     <li><a href="{{ url_for('posts') }}">{{_('Posts')}}</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('lang', lang='en') }}">English</a></li>
+                    <li><a href="{{ url_for('lang', lang='sr') }}">Srpski</a></li>
                     {% if current_user.is_anonymous %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% else %}

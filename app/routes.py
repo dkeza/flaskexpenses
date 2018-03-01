@@ -7,13 +7,19 @@ from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, Res
 from app.email import send_password_reset_email 
 from app.models import User
 from flask_babel import _, get_locale
+import sys
 
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
-    g.locale = str(get_locale())
+    
+    if not hasattr(g, 'locale'):
+            
+        g.locale = 'en'
+        print("Entered if: "+g.locale, file=sys.stderr)
+    # str(get_locale())
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -102,3 +108,9 @@ def incomes():
 @login_required
 def posts():
     return render_template('posts.html', title='Posts')
+
+@app.route('/lang/<lang>')
+def lang(lang):
+    g.locale = lang
+    print("lang:"+lang, file=sys.stderr)
+    return redirect(url_for('index'))
