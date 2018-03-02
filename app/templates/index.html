@@ -5,7 +5,7 @@
 {% if current_user.is_anonymous %}
     <h1>Hi, please <a href="{{ url_for('login') }}">login</a></h1>
     {% else %}
-        <h1>{{_('Hi')}}, {{ current_user.username }}!</h1>
+        <h1>{{ _('Hi') }}, {{ current_user.username }}!</h1>
     {% endif %}
     <h6>{{ g.locale}} </h6>
 {% endblock %}

@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import render_template, flash, redirect, url_for, request, g
+from flask import render_template, flash, redirect, url_for, request, g, session
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
@@ -15,11 +15,11 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
     
-    if not hasattr(g, 'locale'):
-            
+    if 'lang' in session:
+        g.locale = session['lang']
+    else:
         g.locale = 'en'
-        print("Entered if: "+g.locale, file=sys.stderr)
-    # str(get_locale())
+        session['lang'] = g.locale
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -112,5 +112,6 @@ def posts():
 @app.route('/lang/<lang>')
 def lang(lang):
     g.locale = lang
+    session['lang']=lang
     print("lang:"+lang, file=sys.stderr)
     return redirect(url_for('index'))

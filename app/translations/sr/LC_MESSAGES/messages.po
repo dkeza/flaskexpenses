@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-01 20:30+0100\n"
+"POT-Creation-Date: 2018-03-02 18:35+0100\n"
 "PO-Revision-Date: 2018-03-01 20:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sr\n"
@@ -23,23 +23,23 @@ msgstr ""
 msgid "Please log in to access this page."
 msgstr ""
 
-#: app/routes.py:58
+#: app/routes.py:61
 msgid "Congratulations, you are now a registered user!"
 msgstr ""
 
-#: app/routes.py:60
+#: app/routes.py:63
 msgid "Register"
 msgstr ""
 
-#: app/routes.py:73
+#: app/routes.py:76
 msgid "Check your email for the instructions to reset your password"
 msgstr ""
 
-#: app/routes.py:76
+#: app/routes.py:79
 msgid "Reset Password"
 msgstr ""
 
-#: app/routes.py:90
+#: app/routes.py:93
 msgid "Your password has been reset."
 msgstr ""
 
