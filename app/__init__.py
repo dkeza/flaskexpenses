@@ -10,6 +10,7 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_babel import Babel, lazy_gettext as _l
 from config import Config
+import sys
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -51,11 +52,12 @@ if not app.debug:
     app.logger.setLevel(logging.INFO)
     app.logger.info('App startup')
 
+
+app.secret_key = app.config['SECRET_KEY']
+
+
 @babel.localeselector
 def get_locale():
     return session['lang']
-
-
-app.secret_key = app.config['SECRET_KEY']
 
 from app import routes, models

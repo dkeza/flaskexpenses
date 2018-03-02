@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-02 18:35+0100\n"
+"POT-Creation-Date: 2018-03-02 21:01+0100\n"
 "PO-Revision-Date: 2018-03-01 20:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sr\n"
@@ -19,47 +19,127 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.3\n"
 
-#: app/__init__.py:20
+#: app/__init__.py:21
 msgid "Please log in to access this page."
-msgstr ""
+msgstr "Moraš se prijaviti da bi pristupio ovoj stranici."
 
-#: app/routes.py:61
-msgid "Congratulations, you are now a registered user!"
-msgstr ""
+#: app/forms.py:10 app/forms.py:17
+msgid "Username"
+msgstr "Korisničko ime"
 
-#: app/routes.py:63
+#: app/forms.py:11 app/forms.py:19 app/forms.py:39
+msgid "Password"
+msgstr "Lozinka"
+
+#: app/forms.py:12
+msgid "Remember Me"
+msgstr "Zapamti me"
+
+#: app/forms.py:13 app/routes.py:43
+msgid "Sign In"
+msgstr "Prijavi se"
+
+#: app/forms.py:18 app/forms.py:35
+msgid "Email"
+msgstr "E-Mail"
+
+#: app/forms.py:21 app/forms.py:41
+msgid "Repeat Password"
+msgstr "Ponovi lozinku"
+
+#: app/forms.py:22 app/routes.py:62 app/templates/register.html:5
 msgid "Register"
-msgstr ""
+msgstr "Registruj se"
 
-#: app/routes.py:76
-msgid "Check your email for the instructions to reset your password"
-msgstr ""
+#: app/forms.py:27
+msgid "Please use a different username."
+msgstr "Molim te izaberi drugo korisničko ime"
 
-#: app/routes.py:79
-msgid "Reset Password"
-msgstr ""
+#: app/forms.py:32
+msgid "Please use a different email address."
+msgstr "Molim te koristi drugu E-Mail adresu."
 
-#: app/routes.py:93
-msgid "Your password has been reset."
-msgstr ""
+#: app/forms.py:36 app/forms.py:42
+msgid "Request Password Reset"
+msgstr "Zahtevaj resetovanje lozinke"
 
-#: app/templates/base.html:33
+#: app/routes.py:26 app/templates/base.html:33
 msgid "Home"
-msgstr ""
+msgstr "Početak"
 
-#: app/templates/base.html:34
+#: app/routes.py:36
+msgid "Invalid username or password"
+msgstr "Neispravno korisničko ime ili lozinka"
+
+#: app/routes.py:60
+msgid "Congratulations, you are now a registered user!"
+msgstr "Čestitam, postao si registrovan korisnik!"
+
+#: app/routes.py:75
+msgid "Check your email for the instructions to reset your password"
+msgstr "Proveri svoj E-Mail, dobio si uputstva kako da resetuješ lozinku"
+
+#: app/routes.py:78 app/templates/reset_password_request.html:5
+msgid "Reset Password"
+msgstr "Resetuj lozinku"
+
+#: app/routes.py:92
+msgid "Your password has been reset."
+msgstr "Tvoja lozinka je resetovana."
+
+#: app/routes.py:99 app/templates/base.html:34 app/templates/expenses.html:4
 msgid "Expenses"
-msgstr ""
+msgstr "Troškovi"
 
-#: app/templates/base.html:35
+#: app/routes.py:104 app/templates/base.html:35 app/templates/incomes.html:4
 msgid "Incomes"
-msgstr ""
+msgstr "Prihodi"
 
-#: app/templates/base.html:36
+#: app/routes.py:109 app/templates/base.html:36 app/templates/posts.html:4
 msgid "Posts"
-msgstr ""
+msgstr "Stavke"
 
-#: app/templates/index.html:8
+#: app/templates/base.html:39
+msgid "English"
+msgstr "Engleski"
+
+#: app/templates/base.html:40
+msgid "Serbian"
+msgstr "Srpski"
+
+#: app/templates/base.html:41
+msgid "German"
+msgstr "Nemački"
+
+#: app/templates/base.html:43
+msgid "Login"
+msgstr "Prijavi se"
+
+#: app/templates/base.html:45
+msgid "Logout"
+msgstr "Odjavi se"
+
+#: app/templates/index.html:6 app/templates/index.html:8
 msgid "Hi"
 msgstr "Zdravo"
+
+#: app/templates/login.html:12
+msgid "New user?"
+msgstr "Novi korisnik?"
+
+#: app/templates/login.html:12
+msgid "Click to Register!"
+msgstr "Klikni da se registruješ!"
+
+#: app/templates/login.html:14
+msgid "Forgot Your Password?"
+msgstr "Zaboravio si svoju lozinku?"
+
+#: app/templates/login.html:15
+msgid "Click to Reset It"
+msgstr "Klikni da je resetuješ"
+
+#: app/templates/reset_password.html:5
+msgid "Reset Your Password"
+msgstr "Resetuj svoju lozinku"
 
