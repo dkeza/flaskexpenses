@@ -19,6 +19,13 @@ def before_request():
         g.locale = session['lang']
     else:
         g.locale = 'en'
+    
+    if g.locale == 'de':
+        g.locale_description = _('German')
+    elif g.locale == 'sr':
+        g.locale_description = _('Serbian')
+    else:
+        g.locale_description = _('English')
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])

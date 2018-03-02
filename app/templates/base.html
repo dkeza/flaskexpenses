@@ -9,11 +9,7 @@
         {{super()}}
         <link rel="stylesheet" href="{{url_for('.static', filename='css/main.css')}}">
     {% endblock %}
-    {% block scripts %}
-        {{super()}}
-        <script src="{{url_for('.static', filename='js/main.js')}}"></script>
-    {% endblock %}
-
+    <script src="{{url_for('.static', filename='js/main.js')}}"></script>
 {% endblock %}
 
 {% block navbar %}
@@ -34,11 +30,22 @@
                     <li><a href="{{ url_for('expenses') }}">{{_('Expenses')}}</a></li>
                     <li><a href="{{ url_for('incomes') }}">{{_('Incomes')}}</a></li>
                     <li><a href="{{ url_for('posts') }}">{{_('Posts')}}</a></li>
+
+
                 </ul>
+
+
+
+
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url_for('lang', lang='en') }}">{{_('English')}}</a></li>
-                    <li><a href="{{ url_for('lang', lang='sr') }}">{{_('Serbian')}}</a></li>
-                    <li><a href="{{ url_for('lang', lang='de') }}">{{_('German')}}</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{g.locale_description}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('lang', lang='en') }}">{{_('English')}}</a></li>
+                            <li><a href="{{ url_for('lang', lang='sr') }}">{{_('Serbian')}}</a></li>
+                            <li><a href="{{ url_for('lang', lang='de') }}">{{_('German')}}</a></li>
+                        </ul>
+                    </li>
                     {% if current_user.is_anonymous %}
                     <li><a href="{{ url_for('login') }}">{{_('Login')}}</a></li>
                     {% else %}
