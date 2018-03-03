@@ -58,6 +58,9 @@ app.secret_key = app.config['SECRET_KEY']
 
 @babel.localeselector
 def get_locale():
-    return session['lang']
+    lang = 'en'
+    if 'lang' in session:
+        lang = session['lang']
+    return lang
 
 from app import routes, models
