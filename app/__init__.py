@@ -63,4 +63,4 @@ def get_locale():
         lang = session['lang']
     return lang
 
-from app import routes, models
+from app import routes, models, errors

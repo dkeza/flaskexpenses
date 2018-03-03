@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-02 21:01+0100\n"
+"POT-Creation-Date: 2018-03-03 15:43+0100\n"
 "PO-Revision-Date: 2018-03-01 20:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sr\n"
@@ -35,7 +35,7 @@ msgstr "Lozinka"
 msgid "Remember Me"
 msgstr "Zapamti me"
 
-#: app/forms.py:13 app/routes.py:43
+#: app/forms.py:13 app/routes.py:50
 msgid "Sign In"
 msgstr "Prijavi se"
 
@@ -47,7 +47,7 @@ msgstr "E-Mail"
 msgid "Repeat Password"
 msgstr "Ponovi lozinku"
 
-#: app/forms.py:22 app/routes.py:62 app/templates/register.html:5
+#: app/forms.py:22 app/routes.py:69 app/templates/register.html:5
 msgid "Register"
 msgstr "Registruj se"
 
@@ -63,59 +63,75 @@ msgstr "Molim te koristi drugu E-Mail adresu."
 msgid "Request Password Reset"
 msgstr "Zahtevaj resetovanje lozinke"
 
-#: app/routes.py:26 app/templates/base.html:33
-msgid "Home"
-msgstr "Početak"
-
-#: app/routes.py:36
-msgid "Invalid username or password"
-msgstr "Neispravno korisničko ime ili lozinka"
-
-#: app/routes.py:60
-msgid "Congratulations, you are now a registered user!"
-msgstr "Čestitam, postao si registrovan korisnik!"
-
-#: app/routes.py:75
-msgid "Check your email for the instructions to reset your password"
-msgstr "Proveri svoj E-Mail, dobio si uputstva kako da resetuješ lozinku"
-
-#: app/routes.py:78 app/templates/reset_password_request.html:5
-msgid "Reset Password"
-msgstr "Resetuj lozinku"
-
-#: app/routes.py:92
-msgid "Your password has been reset."
-msgstr "Tvoja lozinka je resetovana."
-
-#: app/routes.py:99 app/templates/base.html:34 app/templates/expenses.html:4
-msgid "Expenses"
-msgstr "Troškovi"
-
-#: app/routes.py:104 app/templates/base.html:35 app/templates/incomes.html:4
-msgid "Incomes"
-msgstr "Prihodi"
-
-#: app/routes.py:109 app/templates/base.html:36 app/templates/posts.html:4
-msgid "Posts"
-msgstr "Stavke"
-
-#: app/templates/base.html:39
-msgid "English"
-msgstr "Engleski"
-
-#: app/templates/base.html:40
-msgid "Serbian"
-msgstr "Srpski"
-
-#: app/templates/base.html:41
+#: app/routes.py:24 app/templates/base.html:46
 msgid "German"
 msgstr "Nemački"
 
-#: app/templates/base.html:43
+#: app/routes.py:26 app/templates/base.html:45
+msgid "Serbian"
+msgstr "Srpski"
+
+#: app/routes.py:28 app/templates/base.html:44
+msgid "English"
+msgstr "Engleski"
+
+#: app/routes.py:33 app/templates/base.html:29
+msgid "Home"
+msgstr "Početak"
+
+#: app/routes.py:43
+msgid "Invalid username or password"
+msgstr "Neispravno korisničko ime ili lozinka"
+
+#: app/routes.py:67
+msgid "Congratulations, you are now a registered user!"
+msgstr "Čestitam, postao si registrovan korisnik!"
+
+#: app/routes.py:82
+msgid "Check your email for the instructions to reset your password"
+msgstr "Proveri svoj E-Mail, dobio si uputstva kako da resetuješ lozinku"
+
+#: app/routes.py:85 app/templates/reset_password_request.html:5
+msgid "Reset Password"
+msgstr "Resetuj lozinku"
+
+#: app/routes.py:99
+msgid "Your password has been reset."
+msgstr "Tvoja lozinka je resetovana."
+
+#: app/routes.py:106 app/templates/base.html:30 app/templates/expenses.html:4
+msgid "Expenses"
+msgstr "Troškovi"
+
+#: app/routes.py:111 app/templates/base.html:31 app/templates/incomes.html:4
+msgid "Incomes"
+msgstr "Prihodi"
+
+#: app/routes.py:116 app/templates/base.html:32 app/templates/posts.html:4
+msgid "Posts"
+msgstr "Stavke"
+
+#: app/templates/404.html:4
+msgid "Not Found"
+msgstr "Nije pronađeno"
+
+#: app/templates/404.html:5
+msgid "Back"
+msgstr "Nazad"
+
+#: app/templates/500.html:4
+msgid "An unexpected error has occurred"
+msgstr "Pojavila se neočekivana greška"
+
+#: app/templates/500.html:5
+msgid "The administrator has been notified. Sorry for the inconvenience!"
+msgstr "Administrator je obvešten. Izvini zbog neprijatnosti!"
+
+#: app/templates/base.html:50
 msgid "Login"
 msgstr "Prijavi se"
 
-#: app/templates/base.html:45
+#: app/templates/base.html:52
 msgid "Logout"
 msgstr "Odjavi se"
 
