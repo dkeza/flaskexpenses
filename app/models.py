@@ -17,6 +17,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    posts = db.relationship('Post', backref='user', lazy='dynamic')
+    expenses = db.relationship('Expense', backref='expense', lazy='dynamic')
+    incomes = db.relationship('Income', backref='income', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -40,3 +43,33 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(150))
+    income_id = db.Column(db.Integer, db.ForeignKey('income.id'))
+    expense_id = db.Column(db.Integer, db.ForeignKey('expense.id'))
+    amount = db.Column(db.Integer)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<Posts {}>'.format(self.description)
+
+class Income(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(150))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<Incomes {}>'.format(self.description)
+
+class Expense(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(150))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<Expenses {}>'.format(self.description)
