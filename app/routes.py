@@ -5,7 +5,7 @@ from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.email import send_password_reset_email 
-from app.models import User
+from app.models import User, Expense
 from flask_babel import _, get_locale
 import sys
 
@@ -103,7 +103,8 @@ def reset_password(token):
 @app.route('/expenses', methods=['GET', 'POST'])
 @login_required
 def expenses():
-    return render_template('expenses.html', title=_('Expenses'))
+    e = Expense.query.all()
+    return render_template('expenses.html', title=_('Expenses'),expenses=e)
 
 @app.route('/incomes', methods=['GET', 'POST'])
 @login_required
