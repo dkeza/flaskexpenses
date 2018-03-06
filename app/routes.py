@@ -103,13 +103,13 @@ def reset_password(token):
 @app.route('/expenses', methods=['GET', 'POST'])
 @login_required
 def expenses():
-    e = Expense.query.all()
+    e = Expense.query.filter_by(user_id=current_user.id)
     return render_template('expenses.html', title=_('Expenses'),expenses=e)
 
 @app.route('/incomes', methods=['GET', 'POST'])
 @login_required
 def incomes():
-    i = Income.query.all()
+    i = Income.query.filter_by(user_id=current_user.id)
     return render_template('incomes.html', title=_('Incomes'),incomes=i)
 
 @app.route('/posts', methods=['GET', 'POST'])
