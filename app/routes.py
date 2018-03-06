@@ -5,7 +5,7 @@ from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.email import send_password_reset_email 
-from app.models import User, Expense
+from app.models import User, Expense, Income
 from flask_babel import _, get_locale
 import sys
 
@@ -109,7 +109,8 @@ def expenses():
 @app.route('/incomes', methods=['GET', 'POST'])
 @login_required
 def incomes():
-    return render_template('incomes.html', title=_('Incomes'))
+    i = Income.query.all()
+    return render_template('incomes.html', title=_('Incomes'),incomes=i)
 
 @app.route('/posts', methods=['GET', 'POST'])
 @login_required
