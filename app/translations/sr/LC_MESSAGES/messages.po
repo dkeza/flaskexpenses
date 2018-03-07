@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-03 15:43+0100\n"
+"POT-Creation-Date: 2018-03-07 19:35+0100\n"
 "PO-Revision-Date: 2018-03-01 20:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sr\n"
@@ -99,15 +99,15 @@ msgstr "Resetuj lozinku"
 msgid "Your password has been reset."
 msgstr "Tvoja lozinka je resetovana."
 
-#: app/routes.py:106 app/templates/base.html:30 app/templates/expenses.html:4
+#: app/routes.py:107 app/templates/base.html:30 app/templates/expenses.html:4
 msgid "Expenses"
 msgstr "Troškovi"
 
-#: app/routes.py:111 app/templates/base.html:31 app/templates/incomes.html:4
+#: app/routes.py:113 app/templates/base.html:31 app/templates/incomes.html:4
 msgid "Incomes"
 msgstr "Prihodi"
 
-#: app/routes.py:116 app/templates/base.html:32 app/templates/posts.html:4
+#: app/routes.py:118 app/templates/base.html:32 app/templates/posts.html:4
 msgid "Posts"
 msgstr "Stavke"
 
@@ -115,7 +115,7 @@ msgstr "Stavke"
 msgid "Not Found"
 msgstr "Nije pronađeno"
 
-#: app/templates/404.html:5
+#: app/templates/404.html:5 app/templates/500.html:6
 msgid "Back"
 msgstr "Nazad"
 
@@ -134,6 +134,10 @@ msgstr "Prijavi se"
 #: app/templates/base.html:52
 msgid "Logout"
 msgstr "Odjavi se"
+
+#: app/templates/expenses.html:8 app/templates/incomes.html:8
+msgid "Description"
+msgstr "Opis"
 
 #: app/templates/index.html:6 app/templates/index.html:8
 msgid "Hi"

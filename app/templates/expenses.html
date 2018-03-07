@@ -4,6 +4,9 @@
 <h1>{{_('Expenses')}}</h1>
 
 <table class="table table-striped">
+    <thead>
+            <th>Id</th><th>{{_('Description')}}</th>
+    </thead>
     {% for expense in expenses %} 
         <tr>
             <td>{{ expense.id }}</td><td>{{ expense.description }}</td>
