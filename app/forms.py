@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
-    TextAreaField
+    TextAreaField, IntegerField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, \
     Length
 from app.models import User
@@ -40,3 +40,13 @@ class ResetPasswordForm(FlaskForm):
     password2 = PasswordField(
         _l('Repeat Password'), validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField(_l('Request Password Reset'))
+
+class EditIncomeForm(FlaskForm):
+    id = IntegerField('Id', validators=[])
+    description = StringField(_l('Description'), validators=[DataRequired()])
+    submit = SubmitField(_l('Submit'))
+    
+    def __init__(self, *args, **kwargs):
+        super(EditIncomeForm, self).__init__(*args, **kwargs)
+        # disable the fields if you want to
+        self.id.render_kw = {'disabled': True}

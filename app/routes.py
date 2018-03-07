@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request, g, session
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm, EditIncomeForm
 from app.email import send_password_reset_email 
 from app.models import User, Expense, Income
 from flask_babel import _, get_locale
@@ -111,6 +111,28 @@ def expenses():
 def incomes():
     i = Income.query.filter_by(user_id=current_user.id)
     return render_template('incomes.html', title=_('Incomes'),incomes=i)
+
+@app.route('/incomes/edit/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_income(id):
+    i = Income.query.filter_by(id=id).first_or_404()
+    form = EditIncomeForm()
+    if form.validate_on_submit():
+        i.description = form.description.data
+        db.session.commit()
+        flash(_('Your changes have been saved.'))
+        return redirect(url_for('incomes'))
+    elif request.method == 'GET':
+        form.id.data = i.id
+        form.description.data = i.description
+    return render_template('edit_income.html', title=_('Edit Income'),
+                           form=form) 
+
+@app.route('/incomes/delete/<id>', methods=['GET', 'POST'])
+@login_required
+def delete_income(id):
+    flash(_('Deleted.'))
+    return redirect(url_for('incomes'))
 
 @app.route('/posts', methods=['GET', 'POST'])
 @login_required
