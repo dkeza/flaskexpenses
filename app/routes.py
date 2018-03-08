@@ -112,6 +112,15 @@ def incomes():
     i = Income.query.filter_by(user_id=current_user.id)
     return render_template('incomes.html', title=_('Incomes'),incomes=i)
 
+@app.route('/incomes/new', methods=['GET', 'POST'])
+@login_required
+def new_income():
+    i = Income()
+    i.user_id = current_user.id
+    db.session.add(i)
+    db.session.commit()
+    return redirect( url_for('edit_income', id=i.id))
+
 @app.route('/incomes/edit/<id>', methods=['GET', 'POST'])
 @login_required
 def edit_income(id):

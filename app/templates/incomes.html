@@ -3,6 +3,8 @@
 {% block app_content %}
 <h1>{{_('Incomes')}}</h1>
 
+<a href="{{ url_for('new_income') }}">{{ _('New') }}</a>
+
 <table class="table table-striped">
     <thead>
         <th>Id</th><th>{{_('Description')}}</th>
