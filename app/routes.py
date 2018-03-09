@@ -115,25 +115,31 @@ def incomes():
 @app.route('/incomes/new', methods=['GET', 'POST'])
 @login_required
 def new_income():
-    i = Income()
-    i.user_id = current_user.id
-    db.session.add(i)
-    db.session.commit()
-    return redirect( url_for('edit_income', id=i.id))
+    return redirect( url_for('edit_income', id=0))
 
 @app.route('/incomes/edit/<id>', methods=['GET', 'POST'])
 @login_required
 def edit_income(id):
-    i = Income.query.filter_by(id=id).first_or_404()
+    i = None
+    if id!="0":
+        i = Income.query.filter_by(id=id).first_or_404()
     form = EditIncomeForm()
     if form.validate_on_submit():
+        if id == "0":
+            i = Income()
+            i.user_id = current_user.id
+            db.session.add(i)
         i.description = form.description.data
         db.session.commit()
         flash(_('Your changes have been saved.'))
         return redirect(url_for('incomes'))
     elif request.method == 'GET':
-        form.id.data = i.id
-        form.description.data = i.description
+        if id == "0":
+            form.id.data = 0
+            form.description.data = ""
+        else:    
+            form.id.data = i.id
+            form.description.data = i.description
     return render_template('edit_income.html', title=_('Edit Income'),
                            form=form) 
 
