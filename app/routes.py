@@ -141,11 +141,14 @@ def edit_income(id):
             form.id.data = i.id
             form.description.data = i.description
     return render_template('edit_income.html', title=_('Edit Income'),
-                           form=form) 
+                           form=form)
 
 @app.route('/incomes/delete/<id>', methods=['GET', 'POST'])
 @login_required
 def delete_income(id):
+    i = Income.query.filter_by(id=id).first_or_404()
+    db.session.delete(i)
+    db.session.commit()
     flash(_('Deleted.'))
     return redirect(url_for('incomes'))
 
