@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request, g, session
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm, EditIncomeForm
+from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm, EditIncomeForm, EditExpenseForm
 from app.email import send_password_reset_email 
 from app.models import User, Expense, Income
 from flask_babel import _, get_locale
@@ -84,7 +84,6 @@ def reset_password_request():
     return render_template('reset_password_request.html',
                            title=_('Reset Password'), form=form)
 
-
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     if current_user.is_authenticated:
@@ -105,6 +104,46 @@ def reset_password(token):
 def expenses():
     e = Expense.query.filter_by(user_id=current_user.id)
     return render_template('expenses.html', title=_('Expenses'),expenses=e)
+
+@app.route('/expenses/new', methods=['GET', 'POST'])
+@login_required
+def new_expense():
+    return redirect( url_for('edit_expense', id=0))
+
+@app.route('/expenses/edit/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_expense(id):
+    i = None
+    if id!="0":
+        i = Expense.query.filter_by(id=id).first_or_404()
+    form = EditExpenseForm()
+    if form.validate_on_submit():
+        if id == "0":
+            i = Expense()
+            i.user_id = current_user.id
+            db.session.add(i)
+        i.description = form.description.data
+        db.session.commit()
+        flash(_('Your changes have been saved.'))
+        return redirect(url_for('expenses'))
+    elif request.method == 'GET':
+        if id == "0":
+            form.id.data = 0
+            form.description.data = ""
+        else:    
+            form.id.data = i.id
+            form.description.data = i.description
+    return render_template('edit_expense.html', title=_('Edit Expense'),
+                           form=form)
+
+@app.route('/expenses/delete/<id>', methods=['GET', 'POST'])
+@login_required
+def delete_expense(id):
+    i = Expense.query.filter_by(id=id).first_or_404()
+    db.session.delete(i)
+    db.session.commit()
+    flash(_('Deleted.'))
+    return redirect(url_for('expenses'))
 
 @app.route('/incomes', methods=['GET', 'POST'])
 @login_required

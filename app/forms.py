@@ -50,3 +50,13 @@ class EditIncomeForm(FlaskForm):
         super(EditIncomeForm, self).__init__(*args, **kwargs)
         # disable the fields if you want to
         self.id.render_kw = {'disabled': True}
+
+class EditExpenseForm(FlaskForm):
+    id = IntegerField('Id', validators=[])
+    description = StringField(_l('Description'), validators=[DataRequired()])
+    submit = SubmitField(_l('Submit'))
+    
+    def __init__(self, *args, **kwargs):
+        super(EditExpenseForm, self).__init__(*args, **kwargs)
+        # disable the fields if you want to
+        self.id.render_kw = {'disabled': True}
