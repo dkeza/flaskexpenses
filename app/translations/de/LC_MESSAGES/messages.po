@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-07 19:35+0100\n"
+"POT-Creation-Date: 2018-03-11 18:12+0100\n"
 "PO-Revision-Date: 2018-03-01 20:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -62,6 +62,15 @@ msgstr ""
 msgid "Request Password Reset"
 msgstr ""
 
+#: app/forms.py:46 app/forms.py:56 app/templates/expenses.html:10
+#: app/templates/incomes.html:10
+msgid "Description"
+msgstr ""
+
+#: app/forms.py:47 app/forms.py:57
+msgid "Submit"
+msgstr ""
+
 #: app/routes.py:24 app/templates/base.html:46
 msgid "German"
 msgstr ""
@@ -94,19 +103,35 @@ msgstr ""
 msgid "Reset Password"
 msgstr ""
 
-#: app/routes.py:99
+#: app/routes.py:98
 msgid "Your password has been reset."
 msgstr ""
 
-#: app/routes.py:107 app/templates/base.html:30 app/templates/expenses.html:4
+#: app/routes.py:106 app/templates/base.html:30 app/templates/expenses.html:4
 msgid "Expenses"
 msgstr ""
 
-#: app/routes.py:113 app/templates/base.html:31 app/templates/incomes.html:4
+#: app/routes.py:127 app/routes.py:173
+msgid "Your changes have been saved."
+msgstr ""
+
+#: app/routes.py:136
+msgid "Edit Expense"
+msgstr ""
+
+#: app/routes.py:145 app/routes.py:191
+msgid "Deleted."
+msgstr ""
+
+#: app/routes.py:152 app/templates/base.html:31 app/templates/incomes.html:4
 msgid "Incomes"
 msgstr ""
 
-#: app/routes.py:118 app/templates/base.html:32 app/templates/posts.html:4
+#: app/routes.py:182
+msgid "Edit Income"
+msgstr ""
+
+#: app/routes.py:197 app/templates/base.html:32 app/templates/posts.html:4
 msgid "Posts"
 msgstr ""
 
@@ -134,8 +159,24 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: app/templates/expenses.html:8 app/templates/incomes.html:8
-msgid "Description"
+#: app/templates/edit_expense.html:5
+msgid "Expense"
+msgstr ""
+
+#: app/templates/edit_income.html:5
+msgid "Income"
+msgstr ""
+
+#: app/templates/expenses.html:6 app/templates/incomes.html:6
+msgid "New"
+msgstr ""
+
+#: app/templates/expenses.html:16 app/templates/incomes.html:16
+msgid "Edit"
+msgstr ""
+
+#: app/templates/expenses.html:17 app/templates/incomes.html:17
+msgid "Delete"
 msgstr ""
 
 #: app/templates/index.html:6 app/templates/index.html:8
