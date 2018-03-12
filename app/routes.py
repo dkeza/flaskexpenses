@@ -3,9 +3,10 @@ from flask import render_template, flash, redirect, url_for, request, g, session
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm, EditIncomeForm, EditExpenseForm
+from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm, \
+        EditIncomeForm, EditExpenseForm, EditPostForm
 from app.email import send_password_reset_email 
-from app.models import User, Expense, Income
+from app.models import User, Expense, Income, Post
 from flask_babel import _, get_locale
 import sys
 
@@ -194,7 +195,58 @@ def delete_income(id):
 @app.route('/posts', methods=['GET', 'POST'])
 @login_required
 def posts():
-    return render_template('posts.html', title=_('Posts'))
+    p = Post.query.filter_by(user_id=current_user.id)
+    return render_template('posts.html', title=_('Posts'),posts=p)
+
+@app.route('/posts/new', methods=['GET', 'POST'])
+@login_required
+def new_post():
+    return redirect( url_for('edit_post', id=0))
+
+@app.route('/posts/edit/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_post(id):
+    p = None
+    if id!="0":
+        p = Post.query.filter_by(id=id).first_or_404()
+    form = EditPostForm()
+    if form.validate_on_submit():
+        if id == "0":
+            p = Post()
+            p.user_id = current_user.id
+            db.session.add(p)
+        p.expense_id = form.expense_id.data
+        p.income_id = form.income_id.data
+        p.amount = form.amount.data
+        p.description = form.description.data
+        db.session.commit()
+        flash(_('Your changes have been saved.'))
+        return redirect(url_for('posts'))
+    elif request.method == 'GET':
+        if id == "0":
+            form.id.data = 0
+            form.description.data = ""
+            form.expense_id.data = 0
+            form.income_id.data = 0
+            form.amount.data = 0
+        else:    
+            form.id.data = p.id
+            form.description.data = p.description
+            form.expense_id.data = p.expense_id
+            form.income_id.data = p.income_id
+            form.amount.data = p.amount
+    return render_template('edit_post.html', title=_('Edit Post'),
+                           form=form)
+
+@app.route('/posts/delete/<id>', methods=['GET', 'POST'])
+@login_required
+def delete_post(id):
+    p = Post.query.filter_by(id=id).first_or_404()
+    db.session.delete(p)
+    db.session.commit()
+    flash(_('Deleted.'))
+    return redirect(url_for('posts'))
+
 
 @app.route('/lang/<lang>')
 def lang(lang):
