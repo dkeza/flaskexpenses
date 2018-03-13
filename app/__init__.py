@@ -63,4 +63,10 @@ def get_locale():
         lang = session['lang']
     return lang
 
+@app.context_processor
+def utility_processor():
+    def format_price(amount, currency=u'€'):
+        return u'{0:.2f}{1}'.format(amount, currency)
+    return dict(format_price=format_price)
+
 from app import routes, models, errors
