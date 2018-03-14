@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
-    TextAreaField, IntegerField
+    TextAreaField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, \
     Length
-from app.models import User
+from app.models import User, Expense
 from flask_babel import _, lazy_gettext as _l
 
 class LoginForm(FlaskForm):
@@ -62,8 +62,11 @@ class EditExpenseForm(FlaskForm):
         self.id.render_kw = {'disabled': True}
 
 class EditPostForm(FlaskForm):
+    # e = [("1","Struja"),("2","Voda"),("3","Telefon")]
+    e = [(str(r.id), r.description) for r in Expense.query.all()]
+    
     id = IntegerField('Id', validators=[])
-    expense_id = IntegerField('ExpenseId', validators=[])
+    expense_id = SelectField('ExpenseId', validators=[], choices=e)
     income_id = IntegerField('IncomeId', validators=[])
     description = StringField(_l('Description'), validators=[DataRequired()])
     amount = IntegerField('Amount', validators=[])
