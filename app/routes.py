@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm, \
-        EditIncomeForm, EditExpenseForm, EditPostForm
+        EditIncomeForm, EditExpenseForm, EditPostExpenseForm, EditPostIncomeForm
 from app.email import send_password_reset_email 
 from app.models import User, Expense, Income, Post
 from flask_babel import _, get_locale
@@ -198,25 +198,50 @@ def posts():
     p = Post.query.filter_by(user_id=current_user.id)
     return render_template('posts.html', title=_('Posts'),posts=p)
 
-@app.route('/posts/new', methods=['GET', 'POST'])
+@app.route('/posts/newincome', methods=['GET', 'POST'])
 @login_required
-def new_post():
-    return redirect( url_for('edit_post', id=0))
+def new_post_income():
+    return redirect( url_for('edit_post', id=0, type='e'))
 
-@app.route('/posts/edit/<id>', methods=['GET', 'POST'])
+@app.route('/posts/newexpense', methods=['GET', 'POST'])
 @login_required
-def edit_post(id):
+def new_post_expense():
+    return redirect( url_for('edit_post', id=0, type='i'))
+
+@app.route('/posts/edit/<id>', defaults={'type': None}, methods=['GET', 'POST'])
+@app.route('/posts/edit/<id>/<type>', methods=['GET', 'POST'])
+@login_required
+def edit_post(id, type):
     p = None
+    title = ""
+    form = None
     if id!="0":
         p = Post.query.filter_by(id=id).first_or_404()
-    form = EditPostForm()
+        if p.expense_id==0:
+            type = "i"
+        else:
+            type = "e"
+    else:
+        if not (type == "e" or type == "i"):
+            return render_template('404.html'), 404
+    if type == "e":
+        title = _('Edit Post Expense')
+        form = EditPostExpenseForm()
+    else:
+        title = _('Edit Post Income')
+        form = EditPostIncomeForm()
+    
     if form.validate_on_submit():
         if id == "0":
             p = Post()
             p.user_id = current_user.id
             db.session.add(p)
-        p.expense_id = form.expense_id.data
-        p.income_id = form.income_id.data
+        if type=="e":
+            p.expense_id = form.expense_id.data
+            p.income_id = 0
+        else:
+            p.income_id = form.income_id.data
+            p.expense_id = 0
         p.amount = form.amount.data
         p.description = form.description.data
         db.session.commit()
@@ -226,16 +251,20 @@ def edit_post(id):
         if id == "0":
             form.id.data = 0
             form.description.data = ""
-            form.expense_id.data = 0
-            form.income_id.data = 0
+            if type == "e":
+                form.expense_id.data = 0
+            else:
+                form.income_id.data = 0
             form.amount.data = 0
         else:    
             form.id.data = p.id
             form.description.data = p.description
-            form.expense_id.data = p.expense_id
-            form.income_id.data = p.income_id
+            if type == "e":
+                form.expense_id.data = str(p.expense_id)
+            else:
+                form.income_id.data = str(p.income_id)
             form.amount.data = p.amount
-    return render_template('edit_post.html', title=_('Edit Post'),
+    return render_template('edit_post.html', title=title,
                            form=form)
 
 @app.route('/posts/delete/<id>', methods=['GET', 'POST'])

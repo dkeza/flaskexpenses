@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
     TextAreaField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, \
     Length
-from app.models import User, Expense
+from app.models import User, Expense, Income
 from flask_babel import _, lazy_gettext as _l
 
 class LoginForm(FlaskForm):
@@ -61,19 +61,30 @@ class EditExpenseForm(FlaskForm):
         # disable the fields if you want to
         self.id.render_kw = {'disabled': True}
 
-class EditPostForm(FlaskForm):
-    # e = [("1","Struja"),("2","Voda"),("3","Telefon")]
+class EditPostExpenseForm(FlaskForm):
     e = [(str(r.id), r.description) for r in Expense.query.all()]
     
     id = IntegerField('Id', validators=[])
     expense_id = SelectField('ExpenseId', validators=[], choices=e)
-    income_id = IntegerField('IncomeId', validators=[])
     description = StringField(_l('Description'), validators=[DataRequired()])
     amount = IntegerField('Amount', validators=[])
     submit = SubmitField(_l('Submit'))
     
     def __init__(self, *args, **kwargs):
-        super(EditPostForm, self).__init__(*args, **kwargs)
+        super(EditPostExpenseForm, self).__init__(*args, **kwargs)
         # disable the fields if you want to
         self.id.render_kw = {'disabled': True}
 
+class EditPostIncomeForm(FlaskForm):
+    i = [(str(r.id), r.description) for r in Income.query.all()]
+    
+    id = IntegerField('Id', validators=[])
+    income_id = SelectField('IncomeId', validators=[], choices=i)
+    description = StringField(_l('Description'), validators=[DataRequired()])
+    amount = IntegerField('Amount', validators=[])
+    submit = SubmitField(_l('Submit'))
+    
+    def __init__(self, *args, **kwargs):
+        super(EditPostIncomeForm, self).__init__(*args, **kwargs)
+        # disable the fields if you want to
+        self.id.render_kw = {'disabled': True}
