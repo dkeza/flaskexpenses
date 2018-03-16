@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
-    TextAreaField, IntegerField, SelectField
+    TextAreaField, IntegerField, SelectField, DecimalField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, \
     Length
 from app.models import User, Expense, Income
@@ -67,7 +67,7 @@ class EditPostExpenseForm(FlaskForm):
     id = IntegerField('Id', validators=[])
     expense_id = SelectField('ExpenseId', validators=[], choices=e)
     description = StringField(_l('Description'), validators=[DataRequired()])
-    amount = IntegerField('Amount', validators=[])
+    amount = DecimalField('Amount', validators=[])
     submit = SubmitField(_l('Submit'))
     
     def __init__(self, *args, **kwargs):
@@ -81,7 +81,7 @@ class EditPostIncomeForm(FlaskForm):
     id = IntegerField('Id', validators=[])
     income_id = SelectField('IncomeId', validators=[], choices=i)
     description = StringField(_l('Description'), validators=[DataRequired()])
-    amount = IntegerField('Amount', validators=[])
+    amount = DecimalField('Amount', validators=[])
     submit = SubmitField(_l('Submit'))
     
     def __init__(self, *args, **kwargs):

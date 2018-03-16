@@ -242,7 +242,7 @@ def edit_post(id, type):
         else:
             p.income_id = form.income_id.data
             p.expense_id = 0
-        p.amount = form.amount.data
+        p.amount = int(form.amount.data*100)
         p.description = form.description.data
         db.session.commit()
         flash(_('Your changes have been saved.'))
@@ -255,7 +255,7 @@ def edit_post(id, type):
                 form.expense_id.data = 0
             else:
                 form.income_id.data = 0
-            form.amount.data = 0
+            form.amount.data = 0.00
         else:    
             form.id.data = p.id
             form.description.data = p.description
@@ -263,7 +263,7 @@ def edit_post(id, type):
                 form.expense_id.data = str(p.expense_id)
             else:
                 form.income_id.data = str(p.income_id)
-            form.amount.data = p.amount
+            form.amount.data = p.amount/100
     return render_template('edit_post.html', title=title,
                            form=form)
 

@@ -3,8 +3,8 @@
 {% block app_content %}
 <h1>{{_('Posts')}}</h1>
 
-<a href="{{ url_for('new_post_income') }}">{{ _('New income post') }}</a>
-<a href="{{ url_for('new_post_expense') }}">{{ _('New expense post') }}</a>
+<a href="{{ url_for('new_post_expense') }}">{{ _('New income post') }}</a>
+<a href="{{ url_for('new_post_income') }}">{{ _('New expense post') }}</a>
 
 <table class="table table-striped">
     <thead>
