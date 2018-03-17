@@ -195,7 +195,11 @@ def delete_income(id):
 @app.route('/posts', methods=['GET', 'POST'])
 @login_required
 def posts():
-    p = Post.query.filter_by(user_id=current_user.id)
+    # p = Post.query.join(Expense).filter_by(user_id=current_user.id).union(Post.query.join(Income).filter_by(user_id=current_user.id)).order_by(Post.timestamp)
+    sql ="SELECT post.id, post.description, post.amount, post.expense_id, post.income_id, expense.description AS edescription, income.description AS idescription FROM post LEFT JOIN expense ON post.expense_id = expense.id LEFT JOIN income ON post.income_id = income.id WHERE post.user_id = "+ str(current_user.id) + " GROUP BY 1,2,3,4,5,6,7 ORDER BY post.timestamp DESC"
+    p = db.engine.execute(sql)
+    
+    
     return render_template('posts.html', title=_('Posts'),posts=p)
 
 @app.route('/posts/newincome', methods=['GET', 'POST'])
