@@ -8,10 +8,14 @@
 
 <table class="table table-striped">
     <thead>
-        <th>Id</th><th>{{_('Description')}}</th><th>Expense Id</th><th>Income Id</th><th>Amount</th>
+        <th>Id</th><th>{{_('Description')}}</th><th>{{_('Expense')}}</th><th>{{_('Income')}}</th><th>Amount</th>
     </thead>
     {% for post in posts %} 
-        <tr>
+        <tr 
+        {% if post.edescription==None %}
+            class="warning"
+        {% endif %}
+        >
             <td>{{ post.id }}</td>
             <td>{{ post.description }}</td>
             {% if post.edescription==None %}
