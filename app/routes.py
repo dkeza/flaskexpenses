@@ -205,12 +205,12 @@ def posts():
 @app.route('/posts/newincome', methods=['GET', 'POST'])
 @login_required
 def new_post_income():
-    return redirect( url_for('edit_post', id=0, type='e'))
+    return redirect( url_for('edit_post', id=0, type='i'))
 
 @app.route('/posts/newexpense', methods=['GET', 'POST'])
 @login_required
 def new_post_expense():
-    return redirect( url_for('edit_post', id=0, type='i'))
+    return redirect( url_for('edit_post', id=0, type='e'))
 
 @app.route('/posts/edit/<id>', defaults={'type': None}, methods=['GET', 'POST'])
 @app.route('/posts/edit/<id>/<type>', methods=['GET', 'POST'])
