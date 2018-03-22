@@ -62,10 +62,8 @@ class EditExpenseForm(FlaskForm):
         self.id.render_kw = {'disabled': True}
 
 class EditPostExpenseForm(FlaskForm):
-    e = [(str(r.id), r.description) for r in Expense.query.all()]
-    
     id = IntegerField('Id', validators=[])
-    expense_id = SelectField('ExpenseId', validators=[], choices=e)
+    expense_id = SelectField('ExpenseId', validators=[])
     description = StringField(_l('Description'), validators=[DataRequired()])
     amount = DecimalField('Amount', validators=[])
     submit = SubmitField(_l('Submit'))
@@ -76,10 +74,8 @@ class EditPostExpenseForm(FlaskForm):
         self.id.render_kw = {'disabled': True}
 
 class EditPostIncomeForm(FlaskForm):
-    i = [(str(r.id), r.description) for r in Income.query.all()]
-    
     id = IntegerField('Id', validators=[])
-    income_id = SelectField('IncomeId', validators=[], choices=i)
+    income_id = SelectField('IncomeId', validators=[])
     description = StringField(_l('Description'), validators=[DataRequired()])
     amount = DecimalField('Amount', validators=[])
     submit = SubmitField(_l('Submit'))

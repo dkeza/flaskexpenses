@@ -231,9 +231,11 @@ def edit_post(id, type):
     if type == "e":
         title = _('Edit Post Expense')
         form = EditPostExpenseForm()
+        form.expense_id.choices = [(str(r.id), r.description) for r in Expense.query.filter_by(user_id=current_user.id)]
     else:
         title = _('Edit Post Income')
         form = EditPostIncomeForm()
+        form.income_id.choices = [(str(r.id), r.description) for r in Income.query.filter_by(user_id=current_user.id)]
     
     if form.validate_on_submit():
         if id == "0":
