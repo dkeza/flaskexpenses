@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-15 20:54+0100\n"
+"POT-Creation-Date: 2018-03-24 12:26+0100\n"
 "PO-Revision-Date: 2018-03-01 20:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sr\n"
@@ -63,13 +63,13 @@ msgstr "Molim te koristi drugu E-Mail adresu."
 msgid "Request Password Reset"
 msgstr "Zahtevaj resetovanje lozinke"
 
-#: app/forms.py:46 app/forms.py:56 app/forms.py:69 app/forms.py:83
+#: app/forms.py:46 app/forms.py:56 app/forms.py:67 app/forms.py:79
 #: app/templates/expenses.html:10 app/templates/incomes.html:10
 #: app/templates/posts.html:11
 msgid "Description"
 msgstr "Opis"
 
-#: app/forms.py:47 app/forms.py:57 app/forms.py:71 app/forms.py:85
+#: app/forms.py:47 app/forms.py:57 app/forms.py:69 app/forms.py:81
 msgid "Submit"
 msgstr "Pošalji"
 
@@ -113,7 +113,7 @@ msgstr "Tvoja lozinka je resetovana."
 msgid "Expenses"
 msgstr "Troškovi"
 
-#: app/routes.py:128 app/routes.py:174 app/routes.py:248
+#: app/routes.py:128 app/routes.py:174 app/routes.py:254
 msgid "Your changes have been saved."
 msgstr "Tvoje izmene su sačuvane."
 
@@ -121,7 +121,7 @@ msgstr "Tvoje izmene su sačuvane."
 msgid "Edit Expense"
 msgstr "Izmeni trošak"
 
-#: app/routes.py:146 app/routes.py:192 app/routes.py:276
+#: app/routes.py:146 app/routes.py:192 app/routes.py:282
 msgid "Deleted."
 msgstr "Obrisano."
 
@@ -133,15 +133,15 @@ msgstr "Prihodi"
 msgid "Edit Income"
 msgstr "Izmeni prihod"
 
-#: app/routes.py:199 app/templates/base.html:32 app/templates/posts.html:4
+#: app/routes.py:203 app/templates/base.html:32 app/templates/posts.html:4
 msgid "Posts"
 msgstr "Stavke"
 
-#: app/routes.py:228
+#: app/routes.py:232
 msgid "Edit Post Expense"
 msgstr "Izmeni stavku troška"
 
-#: app/routes.py:231
+#: app/routes.py:236
 msgid "Edit Post Income"
 msgstr "Izmeni stavku prihoda"
 
@@ -169,11 +169,11 @@ msgstr "Prijavi se"
 msgid "Logout"
 msgstr "Odjavi se"
 
-#: app/templates/edit_expense.html:5
+#: app/templates/edit_expense.html:5 app/templates/posts.html:11
 msgid "Expense"
 msgstr "Trošak"
 
-#: app/templates/edit_income.html:5
+#: app/templates/edit_income.html:5 app/templates/posts.html:11
 msgid "Income"
 msgstr "Prihod"
 
@@ -182,12 +182,12 @@ msgid "New"
 msgstr "Novo"
 
 #: app/templates/expenses.html:16 app/templates/incomes.html:16
-#: app/templates/posts.html:20
+#: app/templates/posts.html:32
 msgid "Edit"
 msgstr "Izmeni"
 
 #: app/templates/expenses.html:17 app/templates/incomes.html:17
-#: app/templates/posts.html:21
+#: app/templates/posts.html:33
 msgid "Delete"
 msgstr "Obriši"
 
@@ -212,12 +212,16 @@ msgid "Click to Reset It"
 msgstr "Klikni da je resetuješ"
 
 #: app/templates/posts.html:6
+msgid "New expense post"
+msgstr "Nova stavka troška"
+
+#: app/templates/posts.html:7
 msgid "New income post"
 msgstr "Nova stavka prihoda"
 
-#: app/templates/posts.html:7
-msgid "New expense post"
-msgstr "Nova stavka troška"
+#: app/templates/posts.html:11
+msgid "Amount"
+msgstr "Iznos"
 
 #: app/templates/reset_password.html:5
 msgid "Reset Your Password"
