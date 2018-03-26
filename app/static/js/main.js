@@ -1,6 +1,6 @@
 
-    function onDelete(postid) {
-        if (confirm("Are You sure?")) {
-            window.location.href = "/posts/delete/"+postid;
-        }
+function onDelete(postid, curl) {
+    if (confirm("Are You sure?")) {
+        window.location.href = curl+postid;
     }
+}
